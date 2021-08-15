@@ -1,0 +1,24 @@
+
+
+var -> variabele (bool, int, string)
+onready -> 
+export -> 
+
+
+$NameOfNode/
+notes: $ + name of the node + hierarchy (control(1),MenuAndUI(2),UI(3))
+
+func -> function _nameOfFunction()
+void -> procedure 
+get_tree() -> 
+handle_resize() -> 
+.quit() -> stop the program for instance
+
+if -> 
+if a=x do this 
+elif a=b do this 
+else do this
+
+return -> send value back 
+
+global -> 

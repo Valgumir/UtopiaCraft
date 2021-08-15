@@ -1,0 +1,19 @@
+extends Node
+
+var tiless
+var map
+func _ready():
+	_setarLadrilhos()
+	pass
+func _setarLadrilhos():
+	randomize()
+	map= get_node("TileMap")
+	var width =15
+	var height = 12
+	var n_tiles = 25
+	for j in range(height):
+		for k in range(width):
+		 tiless = randi()% n_tiles
+			map.set_cell(k,j,tiless)
+		  
+	pass	
