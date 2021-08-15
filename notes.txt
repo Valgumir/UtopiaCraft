@@ -1,0 +1,20 @@
+pre new ->
+categorise per file
+
+new ->
+final dest. files + collection of spreadsheets, tilesets, etc.
+
+---
+
+per assetfolder is er een nummer gelinkt aan de licentievoorwaarden en de assets
+
+bv. licentie_1 en assetX_1
+(zie scr.1)
+
+---
+
+ordening new -> 
+- folders with single png's 
+- tilesets in tileset folder
+- spreadsheets in spreadsheet folder
+- 
