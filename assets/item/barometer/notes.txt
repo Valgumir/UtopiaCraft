@@ -1,0 +1,3 @@
+van rechts naar links
+kleur rood start (rechts)
+minder rood en meer naar wit toe (links)
