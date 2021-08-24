@@ -1,0 +1,90 @@
+---CA opzetten---
+Keys genereren en CSR
+openssl 
+genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:2048 -pkeyopt rsa_keygen_pubexp:65537 -out cakey.pem
+openssl req -new -x509 -key cakey.pem -out cacert.pem -days 1095
+    blablabla details invullen
+
+Directories voor CA en keys in steken
+mkdir demoCA
+mkdir demoCA/certs
+mkdir demoCA/crl
+mkdir demoCA/newcerts
+mkdir demoCA/private
+touch demoCA/index.txt
+echo 02 > demoCA/serial
+mv cacert.pem demoCA/
+mv cakey.pem demoCA/private
+
+nano /usr/lib/ssl/openssl.conf
+[policymatch aanpassen]
+
+---Webcertificaat Aanvragen---
+openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:2048 -pkeyopt rsa_keygen_pubexp:65537 -out privkey-www.example.com.pem
+openssl req -new -key privkey-www.example.com.pem -out certreq-www.example.com.csr
+    opties invullen
+
+---Certificaat signing request ondertekenen als CA --> uiteindelijke certificaat---
+openssl ca -in certreq-www.example.com.csr -out cert-www.example.com.pem
+    sign y
+    commit y
+cp demoCA/cacert.pem cert-ourca.crt
+    Een kopie van cacert maken waar apache mee kan werken
+openssl verify -CAfile cert-ourca.crt cert-www.example.com.pem
+    CA ons certificaat van de website laten verifiëren aan de hand van het certificaat van de CA zelf
+    Dit zijn de 2 certificaten die apache nodig heeft voor https
+    het certificaat van de CA voor te verifiëren, en het website certificaat voor de website zelf
+
+---Apache configureren voor HTTPS---
+cp certs-www.example.com.pem /etc/ssl/certs/
+cp cert-ourca.crt /etc/ssl/certs
+    De 2 certificaten in de juiste file zetten voor apache
+cp privkey-www.example.com.pem /etc/ssl/private/
+    Dit is de private key van de webserver, nodig voor een sessie te starten
+nano /etc/apache2/sites-available/default-ssl.conf
+    <VirtualHost _default_:443>
+    ServerAdmin webmaster@localhost
+    ServerName www.example.com:443
+    DocumentRoot /var/www/html
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+    SSLEngine on
+    SSLCertificateFile    /etc/ssl/certs/cert-www.example.com.pem
+    SSLCertificateKeyFile    /etc/ssl/private/privkey-www.example.com.pem
+    SSLCACertificateFile    /etc/ssl/certs/cert-ourca.crt
+    </VirtualHost>
+
+a2enmod ssl
+a2ensite default-ssl
+systemctl reload apache2
+
+---certificaat importeren op client UBUNTU---
+scp ipadresvandeserver:/home/ruben/cert-ourca.crt
+mkdir /usr/share/ca-certificates/extra
+cp cert-ourca.crt /usr/share/ca-certificates/extra/
+dpkg-reconfiguration ca-certificates
+yes
+selecteren
+
+---certificaat stelen via openssh op client WINDOWS---
+open powershell met admin rechten
+Get-WindowsCapability -Online | ? Name -like 'OpenSSH*'
+kijken of dit het resultaat is:
+Name  : OpenSSH.Client~~~~0.0.1.0
+State : Installed
+
+Name  : OpenSSH.Server~~~~0.0.1.0
+State : NotPresent
+
+
+indien openssh client niet installed is --> 
+# Install the OpenSSH Client
+Add-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0
+
+ssh username@ipadresvanuserver
+u pass van u user
+en je bent ingelogd op je server, nu kan je je nano /ucertificaat doen en copy pasten in u windows txt bestand
+
+--testen op ubuntu client via command line---
+lynx https://www.example.com/
+openssl s_client -connect www.fixit.be:443

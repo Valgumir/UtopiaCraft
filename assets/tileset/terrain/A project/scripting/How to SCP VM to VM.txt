@@ -1,0 +1,3 @@
+scp "filename" username@IP:(destination)
+example: scp "launch" valgumir@192.168.0.222:
+// secure copy/paste file vm1-2-vm2

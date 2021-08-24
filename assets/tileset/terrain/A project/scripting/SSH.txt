@@ -1,0 +1,23 @@
+https://phoenixnap.com/kb/ssh-to-connect-to-remote-server-linux-or-windows
+
+betere tutorial -> https://linuxize.com/post/how-to-enable-ssh-on-ubuntu-18-04/
+
+---
+
+apt update
+apt install openssh-server
+
+systemctl status ssh
+
+ufw allow ssh
+
+ip a or ifconfig -> get Ip address
+
+ssh username@ip_address -> from LAN
+
+ssh username@public_ip_address -> from WAN
+
+add ":" after IP + //Type in specific location of disk
+
+
+

@@ -1,0 +1,7 @@
+useradd admin
+passwd admin
+//give password
+
+visudo
+//add special user under ## allow root to run any commands anywhere
+

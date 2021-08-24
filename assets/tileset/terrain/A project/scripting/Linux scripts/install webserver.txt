@@ -1,0 +1,30 @@
+apt-get install apache2
+systemctl status apache2
+
+cd /var/www/html
+mkdir mydomain.be
+cd mydomain.be
+echo Website > index.html
+ls ..
+
+cd /etc/apache2/sites-available
+cp 000-default.conf mydomain.be.conf
+//copy config file
+
+ServerAdmin	webmaster@mydomain.be
+DocumentRoot	/var/www/html/mydomain.be
+ServerName	www.mydomain.be
+//config server information
+
+ln –s ../sites-available/mydomain.be.conf mydomain.be.conf
+//enable website
+
+cd sites-enabled
+ln –s ../sites-available/mydomain.be.conf mydomain.be.conf
+systemctl restart apache2
+OR
+a2ensite mydomain.be.conf
+Apache2 ENable SITE
+
+a2dissite mydomain.be.conf
+

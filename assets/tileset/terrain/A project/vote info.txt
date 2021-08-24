@@ -1,0 +1,39 @@
+minecraftserver.org
+kisseps Nicolai2020 kisseps@hotmail.com 
+
+minecraft-mp.com
+kisseps Nicolai2020 kisseps@hotmail.com 
+
+minecraft-server-list.com
+Valgumir Nicolai2021 nicolaidebock@hotmail.com
+
+minestatus.net
+
+planetminecraft.com
+
+
+
+------
+https://dev.bukkit.org/projects/votifier
+-> vote plugin info
+---
+Welcome to Valgumirs Paradise! This is a an infinite survival world. The world generation
+is amplified and by that you can discover all these amazing mountains, deep oceans and more. 
+We have an economy as well. You can set shops up, claim land and much more.
+Believe me or not but we won't do map resets! 
+
+IP: 		78.22.50.141
+port: 		25565
+votifier ip:	78.22.50.141
+votifier port:	8146
+pyblic key:
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqzT1cli13Tnyy2gr+mDtpaz893mMsl3uK/KzPdYaEXdw/IeiEjnNtgNi6xhL1wDSFPgLZd8btNZXGkeCXT7IOAcIGa4oLzh/xLMOP2dLBhwhQbxUCJprBZQb+/9z97chZq3EyMwcd6WxkLdFxdWMYrHPzfyucYzWl+8DLGQM4rqDiXs7zbtK9W1GXYSnatgmmEvbY7yJlyxTNCcIYoPG64xGkttIy0AbrIRgzqJ/1xaBAhHm1Oxsw9Oo15Ky+0EUPaAc4Y8Axz25mPT+4/K5dGWF9fxCPhPYGzREndtg/2NibsZ4XXxhFdc6m0TAk05OqC6fnsgD5+LPv2vbl0BaMwIDAQAB
+
+https://discord.gg/vbUxgHUE4S
+
+---research---
+
+https://shockbyte.com/billing/knowledgebase/145/How-to-Advertise-your-Minecraft-Server.html
+//lijst vote sites toegevoegd + banner aangemaakt
+
+

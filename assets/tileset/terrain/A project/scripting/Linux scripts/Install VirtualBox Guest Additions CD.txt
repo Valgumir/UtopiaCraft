@@ -1,0 +1,13 @@
+install CD
+
+Insert Guest Additions CD Image.
+
+sudo mount /dev/cdrom /media/cdrom. 
+OR open GA in Term mode + change to root user
+
+cd /media/cdrom.
+
+sudo apt-get install -y dkms build-essential linux-headers-generic linux-headers-$(uname -r).
+./VBoxLinuxAdditions.run.
+
+reboot

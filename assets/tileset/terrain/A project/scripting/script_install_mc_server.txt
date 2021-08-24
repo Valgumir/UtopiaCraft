@@ -1,0 +1,98 @@
+ubuntu server 18.04
+
+-------------------
+
+sudo apt update
+sudo apt install git build-essential
+
+sudo apt install openjdk-8-jre-headless
+
+java -version
+
+sudo useradd -r -m -U -d /opt/minecraft -s /bin/bash minecraft
+
+sudo su - minecraft
+
+mkdir -p ~/{backups,tools,server}
+
+cd ~/tools && git clone https://github.com/Tiiffi/mcrcon.git
+
+cd ~/tools/mcrcon
+
+gcc -std=gnu11 -pedantic -Wall -Wextra -O2 -s -o mcrcon mcrcon.c
+
+./mcrcon -h
+
+wget https://launcher.mojang.com/v1/objects/a412fd69db1f81db3f511c1463fd304675244077/server.jar -P ~/server
+
+cd ~/server
+java -Xmx1024M -Xms512M -jar server.jar nogui
+
+nano ~/server/eula.txt
+
+nano ~/server/server.properties
+
+// change this -> rcon.port=25575 + rcon.password=strong-password + enable-rcon=true
+
+sudo nano /etc/systemd/system/minecraft.service
+
+/* add this ->
+[Unit]
+Description=Minecraft Server
+After=network.target
+
+[Service]
+User=minecraft
+Nice=1
+KillMode=none
+SuccessExitStatus=0 1
+ProtectHome=true
+ProtectSystem=full
+PrivateDevices=true
+NoNewPrivileges=true
+WorkingDirectory=/opt/minecraft/server
+ExecStart=/usr/bin/java -Xmx1024M -Xms512M -jar server.jar nogui
+ExecStop=/opt/minecraft/tools/mcrcon/mcrcon -H 127.0.0.1 -P 25575 -p strong-password stop
+
+[Install]
+WantedBy=multi-user.target
+*/
+
+sudo systemctl daemon-reload
+
+sudo systemctl start minecraft
+
+sudo systemctl status minecraft
+
+sudo systemctl enable minecraft
+
+sudo ufw allow 25565/tcp
+
+sudo su - minecraft
+
+nano /opt/minecraft/tools/backup.sh
+
+/* add this ->
+#!/bin/bash
+
+function rcon {
+  /opt/minecraft/tools/mcrcon/mcrcon -H 127.0.0.1 -P 25575 -p strong-password "$1"
+}
+
+rcon "save-off"
+rcon "save-all"
+tar -cvpzf /opt/minecraft/backups/server-$(date +%F-%H-%M).tar.gz /opt/minecraft/server
+rcon "save-on"
+
+## Delete older backups
+find /opt/minecraft/backups/ -type f -mtime +7 -name '*.gz' -delete
+*/
+
+chmod +x /opt/minecraft/tools/backup.sh
+
+crontab -e
+
+0 23 * * * /opt/minecraft/tools/backup.sh
+
+/opt/minecraft/tools/mcrcon/mcrcon -H 127.0.0.1 -P 25575 -p strong-password -t
+

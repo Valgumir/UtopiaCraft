@@ -1,0 +1,32 @@
+https://dev.bukkit.org/projects/worldguard/
+-> worldguard with a lot of functions
+
+https://www.spigotmc.org/resources/freerpg-1-15-1-16-3.81954/
+-> plugin voor skills and abilities (treefiler, speedminer,...)
+
+https://www.spigotmc.org/resources/chestshop.51856/
+-> plugin voor chestshops te maken
+
+https://www.spigotmc.org/resources/essentialsx.9089/
+-> EssentialsX + -Chat + -Protect + -Spawn
+
+https://www.spigotmc.org/resources/vault.34315/
+-> Vault
+
+https://dev.bukkit.org/projects/clearlagg
+-> lag reducer
+
+https://www.spigotmc.org/resources/griefprevention.1884/
+-> grief tegengaan
+
+https://dev.bukkit.org/projects/votifier
+-> naar vote sites gaan
+
+https://www.spigotmc.org/resources/votingplugin.15358/
+-> Voting plugin om rewards toe te kennen en andere functies te gebruiken
+
+https://www.spigotmc.org/resources/superbvote.11626/
+-> Extra voting plugin volgens yt video om votes te doen werken
+
+https://www.spigotmc.org/resources/nuvotifier.13449/
+-> alternatief voor VotingPlugin
