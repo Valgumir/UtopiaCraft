@@ -1,0 +1,2 @@
+Door.gd and Flower.gd are from the pokémon game. They most likely do not depend
+on other files in this case to work

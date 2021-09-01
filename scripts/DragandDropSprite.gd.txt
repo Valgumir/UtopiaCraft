@@ -1,0 +1,20 @@
+extends Sprite
+
+var mouse_in = false
+var dragging = false
+
+func _process(delta):
+	if (mouse_in && Input.is_action_pressed("left_click")):
+		dragging = true
+	if (dragging && Input.is_action_pressed("left_click")):
+		var position = get_viewport().get_mouse_position()
+		set_position(position)
+	else:
+		dragging = false
+
+func _on_Area2D_mouse_entered():	-> source: Area2D Signal: mouse_entered Target: Sprite
+	mouse_in = true
+func _on_Area2D_mouse_exited():		-> source: Area2D  Signal: mouse_exited Target: Sprite
+	mouse_in = false
+#source (connection from) to sprite + method that's used is mouse_entered or mouse_exited
+#project Drag and Drop 
