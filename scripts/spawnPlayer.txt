@@ -1,0 +1,6 @@
+extends Node
+#bron: https://youtu.be/Xrss2GXcd2w
+func _ready():
+	var scene = load("res://Scenes/Player.tscn")
+	var player = scene.instance()
+	add_child(player)
